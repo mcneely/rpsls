@@ -7,6 +7,23 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    #This rule set lists what each item defeats and the defeating verb.
+    ruleset:
+      rock:
+        lizard: crushes
+        scissors: crushes
+      paper:
+        rock: covers
+        spock: disproves
+      scissors:
+        paper: cuts
+        lizard: decapitates
+      lizard:
+        spock: poisons
+        paper: eats
+      spock:
+        scissors: smashes
+        rock: vaporizes
 
 framework:
     #esi: ~
