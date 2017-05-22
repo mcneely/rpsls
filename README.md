@@ -1,4 +1,4 @@
-.checkout
-=========
+Rock Paper Scissors Lizard Spock
+================================
 
-A Symfony project created on May 20, 2017, 11:49 pm.
+A simple Symfony 3 project.
