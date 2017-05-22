@@ -20,10 +20,12 @@
                 <div id="user">You Picked: {{ user|capitalize }}.</div>
                 <div id="computer">The Computer Picked: {{ computer|capitalize }}.</div>
                 <div id="result">
-                    {{ result|capitalize }}{% if result == "win" %}:
-                        {{ user|capitalize }} {{ ruleset[user][computer] }} {{ computer }}.
-                    {% elseif result == "loss" %}:
-                        {{ computer|capitalize }} {{ ruleset[computer][user] }} {{ user }}.
+                    {% if result == 1 %}
+                        Win: {{ user|capitalize }} {{ ruleset[user][computer] }} {{ computer }}.
+                    {% elseif result == 2 %}:
+                        Lose: {{ computer|capitalize }} {{ ruleset[computer][user] }} {{ user }}.
+                    {% elseif result == 3 %}:
+                        Tie.
                     {% endif %}
                 </div>
             {% endif %}

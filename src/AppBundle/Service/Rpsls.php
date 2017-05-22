@@ -10,6 +10,10 @@ namespace AppBundle\Service;
 
 class Rpsls
 {
+    const WIN  = 1;
+    const LOSS = 2;
+    const TIE  = 3;
+
     private $ruleSet = [];
 
     public function __construct(array $ruleSet)
@@ -32,7 +36,7 @@ class Rpsls
     /**
      * @param $userSelection
      * @param $computerSelection
-     * @return string
+     * @return integer
      * @throws \ErrorException
      */
     public function getResult($userSelection, $computerSelection)
@@ -42,16 +46,16 @@ class Rpsls
         }
 
         if ($userSelection === $computerSelection) {
-            return "tie";
+            return $this::TIE;
         }
 
         try {
             if (array_key_exists($computerSelection, $this->ruleSet[$userSelection])) {
-                return "win";
+                return $this::WIN;
             }
 
             if (array_key_exists($userSelection, $this->ruleSet[$computerSelection])) {
-                return "loss";
+                return $this::LOSS;
             }
         } catch (\Exception $e) {
         }
