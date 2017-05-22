@@ -17,17 +17,15 @@ class AppController extends Controller
      */
     public function indexAction($user = false)
     {
-        /** @var \AppBundle\Service\Rpsls $rpslsService*/
-        $rpslsService = $this->get('service_rpsls');
+        /** @var \AppBundle\Service\Rpsls $rpslsService */
+        $rpslsService      = $this->get('service_rpsls');
         /** @var \AppBundle\Service\Statistics $statisticsService */
         $statisticsService = $this->get('service_statistics');
-
-        $ruleSet      = $this->getParameter("ruleset");
-        $computer     = $rpslsService->getRandom();
-        $result       = false;
+        $ruleSet           = $this->getParameter("ruleset");
+        $computer          = $rpslsService->getRandom();
+        $result            = false;
 
         if ($user) {
-
             $result = $rpslsService->getResult($user, $computer);
             $statisticsService->addResult($user, $computer, $result);
         }
@@ -50,10 +48,11 @@ class AppController extends Controller
     {
         /** @var \AppBundle\Service\Statistics $statisticsService */
         $statisticsService = $this->get('service_statistics');
-        if($clear) {
+        if ($clear) {
             $statisticsService->clearStats();
         }
         $statisticsService->buildStats();
+
         return ['stats' => $statisticsService];
     }
 
