@@ -3,15 +3,30 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
-            <div id="user">You Picked: {{ user|capitalize }}.</div>
-            <div id="computer">The Computer Picked: {{ computer|capitalize }}.</div>
-            <div id="result">
-                {{ result|capitalize }}{% if result == "win" %}:
-                    {{ user|capitalize }} {{ ruleset[user][computer] }} {{ computer }}.
-                {% elseif result == "loss" %}:
-                    {{ computer|capitalize }} {{ ruleset[computer][user] }} {{ user }}.
-                {% endif %}
+            <div id="pick">Pick One:</div>
+            <div>
+                <ul>
+                {% for key in ruleset|keys %}
+                    <li>
+                        <a href="{{ path('home', {'user': key}) }}">
+                            {{ key }}
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
             </div>
+
+            {% if result %}
+                <div id="user">You Picked: {{ user|capitalize }}.</div>
+                <div id="computer">The Computer Picked: {{ computer|capitalize }}.</div>
+                <div id="result">
+                    {{ result|capitalize }}{% if result == "win" %}:
+                        {{ user|capitalize }} {{ ruleset[user][computer] }} {{ computer }}.
+                    {% elseif result == "loss" %}:
+                        {{ computer|capitalize }} {{ ruleset[computer][user] }} {{ user }}.
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

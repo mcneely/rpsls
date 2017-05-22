@@ -5,23 +5,27 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 
 class AppController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/{user}", name="home")
      * @Template()
+     * @param string|bool $user
+     * @return array
      */
-    public function indexAction(Request $request)
+    public function indexAction($user = false)
     {
         /** @var $rpslsService \AppBundle\Service\Rpsls */
         $rpslsService = $this->get('service_rpsls');
         $ruleSet      = $this->getParameter("ruleset");
-        $user         = $rpslsService->getRandom();
         $computer     = $rpslsService->getRandom();
-        $result       = $rpslsService->getResult($user, $computer);
-        // replace this example code with whatever you need
+        $result       = false;
+
+        if ($user) {
+            $result = $rpslsService->getResult($user, $computer);
+        }
+
         return [
             'computer' => $computer,
             'user'     => $user,

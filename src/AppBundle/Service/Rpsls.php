@@ -53,7 +53,8 @@ class Rpsls
             if (array_key_exists($userSelection, $this->ruleSet[$computerSelection])) {
                 return "loss";
             }
-        } catch (\Exception $e) {}
+        } catch (\Exception $e) {
+        }
 
         throw new \ErrorException("Responses do no exist in rule set.");
     }
