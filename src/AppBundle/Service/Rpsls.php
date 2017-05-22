@@ -58,6 +58,7 @@ class Rpsls
                 return $this::LOSS;
             }
         } catch (\Exception $e) {
+            // Covered by Exception below
         }
 
         throw new \ErrorException("Responses do no exist in rule set.");

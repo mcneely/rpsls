@@ -7,3 +7,7 @@ services:
     service_rpsls:
         class: AppBundle\Service\Rpsls
         arguments: ['%ruleset%']
+
+    service_statistics:
+        class: AppBundle\Service\Statistics
+        arguments: ['@doctrine.orm.default_entity_manager']
